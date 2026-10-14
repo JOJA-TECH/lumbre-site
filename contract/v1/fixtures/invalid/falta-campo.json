@@ -1,0 +1,22 @@
+{
+  "obra": {
+    "contract_version": 1,
+    "work": "prueba",
+    "title": "Prueba",
+    "author": "Autora",
+    "lang": "es",
+    "type": "relato"
+  },
+  "capitulos": [
+    {
+      "contract_version": 1,
+      "work": "prueba",
+      "slug": "unico",
+      "title": "Único",
+      "uid": "b7K2mQ91xZ",
+      "status": "publicado",
+      "date_published": "2026-09-01",
+      "source_revision": "3f9a1c2"
+    }
+  ]
+}

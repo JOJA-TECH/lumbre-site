@@ -1,0 +1,24 @@
+{
+  "obra": {
+    "contract_version": 1,
+    "work": "la-casa-vacia",
+    "title": "La casa vacía",
+    "author": "Autora de ejemplo",
+    "lang": "es",
+    "type": "relato",
+    "synopsis": "Un regreso a la casa familiar revela lo que el tiempo enterró.",
+    "tags": ["drama", "familia"]
+  },
+  "capitulos": [
+    {
+      "contract_version": 1,
+      "work": "la-casa-vacia",
+      "slug": "unico",
+      "title": "La casa vacía",
+      "uid": "b7K2mQ91xZ",
+      "status": "publicado",
+      "date_published": "2026-09-01",
+      "source_revision": "3f9a1c2"
+    }
+  ]
+}

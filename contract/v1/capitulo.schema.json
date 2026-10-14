@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:lumbre:contract:v1:capitulo",
+  "title": "Capítulo / pieza (frontmatter de content/<work>/<slug>.md)",
+  "description": "Contrato de contenido v1, entidad Capítulo. Schema estricto: un campo desconocido es un error (CON-3). `order` lo exige el schema compuesto solo cuando la obra es `serial`.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["contract_version", "work", "slug", "title", "uid", "status", "date_published", "source_revision"],
+  "properties": {
+    "contract_version": { "const": 1 },
+    "work": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+      "description": "Único dentro de su obra (CON-5)."
+    },
+    "title": { "type": "string", "minLength": 1 },
+    "uid": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_-]{8,64}$",
+      "description": "ID público opaco y estable; NO es el ID interno de Atelier. Permite redirecciones si cambia el slug."
+    },
+    "status": {
+      "enum": ["publicado"],
+      "description": "Producción solo acepta `publicado` (CON-2)."
+    },
+    "date_published": {
+      "type": "string",
+      "format": "date",
+      "description": "ISO 8601 (YYYY-MM-DD); no puede ser futura."
+    },
+    "order": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Obligatorio y único dentro de la obra si la obra es `serial`."
+    },
+    "synopsis": { "type": "string", "minLength": 1 },
+    "updated": {
+      "type": "string",
+      "format": "date",
+      "description": "Fecha de la última corrección publicada."
+    },
+    "source_revision": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{7,64}$",
+      "description": "Hash del export en Atelier que identifica la versión exacta."
+    }
+  }
+}

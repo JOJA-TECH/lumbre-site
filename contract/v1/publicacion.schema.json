@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:lumbre:contract:v1:publicacion",
+  "title": "Publicación: una obra y sus capítulos",
+  "description": "Schema compuesto para validar un lote de publicación de una sola vez. Reglas que NO puede expresar JSON Schema (unicidad de slug y de order, fecha no futura, contenido no vacío, enlaces internos): las aplica el validador (Lumbre F1).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["obra", "capitulos"],
+  "properties": {
+    "obra": { "$ref": "urn:lumbre:contract:v1:obra" },
+    "capitulos": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "urn:lumbre:contract:v1:capitulo" }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "obra": { "properties": { "type": { "const": "serial" } }, "required": ["type"] } },
+        "required": ["obra"]
+      },
+      "then": {
+        "properties": { "capitulos": { "items": { "required": ["order"] } } }
+      }
+    }
+  ]
+}

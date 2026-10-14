@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:lumbre:contract:v1:obra",
+  "title": "Obra (frontmatter de content/<work>/_obra.md)",
+  "description": "Contrato de contenido v1, entidad Obra. Schema estricto: un campo desconocido es un error (CON-3).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["contract_version", "work", "title", "author", "lang", "type", "synopsis"],
+  "properties": {
+    "contract_version": { "const": 1 },
+    "work": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+      "description": "Slug de la obra."
+    },
+    "title": { "type": "string", "minLength": 1 },
+    "author": { "type": "string", "minLength": 1 },
+    "lang": {
+      "type": "string",
+      "pattern": "^[a-z]{2}(?:-[A-Z]{2})?$",
+      "examples": ["es", "es-ES"]
+    },
+    "type": { "enum": ["relato", "serial"] },
+    "synopsis": { "type": "string", "minLength": 1 },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    }
+  }
+}

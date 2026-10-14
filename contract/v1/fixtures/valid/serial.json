@@ -1,0 +1,46 @@
+{
+  "obra": {
+    "contract_version": 1,
+    "work": "el-faro",
+    "title": "El faro",
+    "author": "Autor de ejemplo",
+    "lang": "es",
+    "type": "serial",
+    "synopsis": "Tres noches en un faro donde nada es lo que parece."
+  },
+  "capitulos": [
+    {
+      "contract_version": 1,
+      "work": "el-faro",
+      "slug": "la-llegada",
+      "title": "La llegada",
+      "uid": "a1B2c3D4eF",
+      "status": "publicado",
+      "date_published": "2026-09-01",
+      "order": 1,
+      "source_revision": "0a1b2c3"
+    },
+    {
+      "contract_version": 1,
+      "work": "el-faro",
+      "slug": "la-torre",
+      "title": "La torre",
+      "uid": "g5H6i7J8kL",
+      "status": "publicado",
+      "date_published": "2026-09-08",
+      "order": 2,
+      "source_revision": "4d5e6f7"
+    },
+    {
+      "contract_version": 1,
+      "work": "el-faro",
+      "slug": "la-marea",
+      "title": "La marea",
+      "uid": "m9N0o1P2qR",
+      "status": "publicado",
+      "date_published": "2026-09-15",
+      "order": 3,
+      "source_revision": "8a9b0c1"
+    }
+  ]
+}

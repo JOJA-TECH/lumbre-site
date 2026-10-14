@@ -1,0 +1,24 @@
+{
+  "obra": {
+    "contract_version": 1,
+    "work": "prueba",
+    "title": "Prueba",
+    "author": "Autora",
+    "lang": "es",
+    "type": "relato",
+    "synopsis": "…"
+  },
+  "capitulos": [
+    {
+      "contract_version": 1,
+      "work": "prueba",
+      "slug": "unico",
+      "title": "Único",
+      "uid": "b7K2mQ91xZ",
+      "status": "publicado",
+      "date_published": "2026-09-01",
+      "source_revision": "3f9a1c2",
+      "prompt_interno": "esto es un campo privado que debe fallar (CON-3)"
+    }
+  ]
+}
