@@ -1,0 +1,13 @@
+{
+  "case_version": 1,
+  "id": "invalid-enlace-interno-roto",
+  "expected": "reject",
+  "rule": "PUB-3: enlace interno debe resolver a una página publicada",
+  "publication": {
+    "obra": { "contract_version": 1, "work": "enlace-fixture", "title": "Obra sintética", "author": "Fixture", "lang": "es", "type": "relato", "synopsis": "Datos de prueba." },
+    "capitulos": [
+      { "contract_version": 1, "work": "enlace-fixture", "slug": "capitulo", "title": "Capítulo", "uid": "fixture-link-01", "status": "publicado", "date_published": "2026-09-01", "source_revision": "abcdef1" }
+    ]
+  },
+  "bodies": [{ "chapter_index": 0, "markdown": "Enlace de prueba: [capítulo ausente](./capitulo-inexistente.md)." }]
+}

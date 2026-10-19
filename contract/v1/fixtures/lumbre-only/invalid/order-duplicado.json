@@ -1,0 +1,17 @@
+{
+  "case_version": 1,
+  "id": "invalid-order-duplicado",
+  "expected": "reject",
+  "rule": "PUB-3: order único dentro del serial",
+  "publication": {
+    "obra": { "contract_version": 1, "work": "order-fixture", "title": "Obra sintética", "author": "Fixture", "lang": "es", "type": "serial", "synopsis": "Datos de prueba." },
+    "capitulos": [
+      { "contract_version": 1, "work": "order-fixture", "slug": "uno", "title": "Capítulo uno", "uid": "fixture-order-01", "status": "publicado", "date_published": "2026-09-01", "order": 1, "source_revision": "abcdef1" },
+      { "contract_version": 1, "work": "order-fixture", "slug": "dos", "title": "Capítulo dos", "uid": "fixture-order-02", "status": "publicado", "date_published": "2026-09-02", "order": 1, "source_revision": "abcdef2" }
+    ]
+  },
+  "bodies": [
+    { "chapter_index": 0, "markdown": "Texto sintético uno." },
+    { "chapter_index": 1, "markdown": "Texto sintético dos." }
+  ]
+}

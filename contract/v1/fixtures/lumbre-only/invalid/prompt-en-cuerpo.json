@@ -1,0 +1,13 @@
+{
+  "case_version": 1,
+  "id": "invalid-prompt-en-cuerpo",
+  "expected": "reject",
+  "rule": "PUB-3: no exponer prompt interno en el cuerpo",
+  "publication": {
+    "obra": { "contract_version": 1, "work": "prompt-fixture", "title": "Obra sintética", "author": "Fixture", "lang": "es", "type": "relato", "synopsis": "Datos de prueba." },
+    "capitulos": [
+      { "contract_version": 1, "work": "prompt-fixture", "slug": "capitulo", "title": "Capítulo", "uid": "fixture-prompt-01", "status": "publicado", "date_published": "2026-09-01", "source_revision": "abcdef1" }
+    ]
+  },
+  "bodies": [{ "chapter_index": 0, "markdown": "Prompt interno de fixture: redacta tres frases sobre una ciudad inventada." }]
+}

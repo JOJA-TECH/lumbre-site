@@ -1,0 +1,27 @@
+{
+  "case_version": 1,
+  "id": "valid-serial-tres-capitulos",
+  "expected": "accept",
+  "rule": "PUB-3: serial completo con orden único y cuerpos no vacíos",
+  "publication": {
+    "obra": {
+      "contract_version": 1,
+      "work": "serial-fixture",
+      "title": "Serial sintético de prueba",
+      "author": "Fixture",
+      "lang": "es",
+      "type": "serial",
+      "synopsis": "Datos sintéticos para validar estructura."
+    },
+    "capitulos": [
+      { "contract_version": 1, "work": "serial-fixture", "slug": "capitulo-uno", "title": "Capítulo uno", "uid": "fixture-serial-01", "status": "publicado", "date_published": "2026-09-01", "order": 1, "source_revision": "abcdef1" },
+      { "contract_version": 1, "work": "serial-fixture", "slug": "capitulo-dos", "title": "Capítulo dos", "uid": "fixture-serial-02", "status": "publicado", "date_published": "2026-09-02", "order": 2, "source_revision": "abcdef2" },
+      { "contract_version": 1, "work": "serial-fixture", "slug": "capitulo-tres", "title": "Capítulo tres", "uid": "fixture-serial-03", "status": "publicado", "date_published": "2026-09-03", "order": 3, "source_revision": "abcdef3" }
+    ]
+  },
+  "bodies": [
+    { "chapter_index": 0, "markdown": "Texto sintético del capítulo uno." },
+    { "chapter_index": 1, "markdown": "Texto sintético del capítulo dos." },
+    { "chapter_index": 2, "markdown": "Texto sintético del capítulo tres." }
+  ]
+}

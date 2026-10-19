@@ -1,7 +1,7 @@
 # ROADMAP — Lumbre (`lumbre-site`)
 
 > Qué se construye, en qué orden y con qué evidencia se da por cumplido. Las **reglas de trabajo** están en [`AGENTS.md`](AGENTS.md).
-> Última revisión: 2026-10-13 · Las fases son una **secuencia**, no un calendario: una fase avanza solo cuando cumple sus criterios de salida.
+> Última revisión: 2026-10-15 · Las fases son una **secuencia**, no un calendario: una fase avanza solo cuando cumple sus criterios de salida.
 
 ## 1. Cómo leer este documento
 
@@ -27,6 +27,8 @@
 
 Un solo frente activo por vez. Hito previo al lanzamiento: **Puerta `LU-G-L`**.
 
+**Estado al 2026-10-15:** F0 sigue activa y está parcialmente completada. Las decisiones base (Astro 7 estático, URLs y Cloudflare Workers Static Assets) y la portabilidad están aceptadas; SPEC-005 autoriza la base de aplicación. En revisión de solo lectura, Atelier declaraba F0 completada y su `SHA256SUMS` coincidía con los diez archivos fuente base. La expansión actual de fixtures en Lumbre agrega un grupo sintético `lumbre-only`; la copia Atelier queda pendiente de sincronización y su autotest actual aún no cubre varias de esas reglas. No declarar `INT-1` ni F0 cumplidos hasta verificar la copia y acordar esa cobertura.
+
 ## 3. Riesgos
 
 | ID | Riesgo | Evidencia que lo invalidaría | Se verifica en |
@@ -44,12 +46,14 @@ Un solo frente activo por vez. Hito previo al lanzamiento: **Puerta `LU-G-L`**.
 | — | Lumbre es la plataforma pública de lectura de DeepWrite; Nivel 1 = relatos, seriales, RSS, navegación, búsqueda básica, páginas editoriales | Decidida | |
 | — | Contenido en Markdown con frontmatter, versionado en Git | Decidida | `ADR-INT-001` |
 | — | Repositorio `lumbre-site` | Decidida | |
-| H-LU-01 | Framework Astro en modo estático + Content Collections | Propuesta | ADR en F0. Verificar versión vigente y API de colecciones al inicializar |
-| H-LU-02 | Hosting inicial | Hipótesis | ADR en F0. Ver nota abajo |
+| H-LU-01 | Framework Astro en modo estático + Content Collections | Decidida | Astro 7 estático, `ADR-001`; dependencias actualizadas con pnpm el 2026-10-15 |
+| H-LU-02 | Hosting inicial | Decidida | Cloudflare Workers static assets, `ADR-002`; confirmar cuenta, plan y límites antes de lanzamiento (`LU-G-L`) |
 | H-LU-03 | Nombre “Lumbre” y dominio | Hipótesis | Provisional; se cierra en `LU-G-L`. **No bloquea el desarrollo** |
 | — | Comentarios y analítica | Diferidos | C1 y C2, separados del manuscrito |
+| H-LU-04 | Monetización publicitaria | Diferida | Explorar de nuevo después de F2 y de tener audiencia/lectura observables; requiere SPEC + ADR, revisión de privacidad, políticas del proveedor y aprobación antes de cualquier script. Investigación inicial: AdSense puede aceptar contenido asistido por IA con revisión/curaduría, sujeto a revisión del sitio; anuncios contextuales implican rastreo del contenido público y datos/cookies del lector. |
+| — | Agnosticismo al proveedor y posibilidad de migración | Decidida | `ADR-004`: mismo `dist/` estático; configuración/adaptadores aislados; el cambio requiere validar despliegue, DNS y comportamiento HTTP |
 
-**Nota sobre H-LU-02.** Fuentes recientes indican que Cloudflare recomienda *Workers con static assets* para proyectos nuevos y que Pages sigue soportado pero con menos desarrollo; la matriz oficial de compatibilidad lista **redirecciones y cabeceras HTTP personalizadas** como puntos que requieren verificación o solución alternativa en Workers. El ADR de hosting debe comparar como mínimo Cloudflare (Workers assets / Pages), GitHub Pages y Netlify según: preview por PR, redirecciones, cabeceras, límites del plan gratuito, costo y portabilidad (`ARQ-4`).
+**Nota sobre H-LU-02 (revisada 2026-10-15).** Se eligió Cloudflare Workers static assets como hosting inicial. La documentación oficial describe `_redirects`, `_headers` y previews por rama/PR con Workers Builds; antes del lanzamiento hay que verificar cuenta, límites, flujo de revisión y redirecciones reales. La comparación cruzada y sus fuentes quedan en `ADR-002`; `ADR-004` mantiene explícita la posibilidad de migrar de proveedor.
 
 ## 5. Reglas de planificación
 
@@ -58,6 +62,7 @@ Un solo frente activo por vez. Hito previo al lanzamiento: **Puerta `LU-G-L`**.
 3. **Cada elemento de F4 y toda fase condicionada necesita evidencia:** fricción observada o pregunta editorial concreta, documentada en su SPEC.
 4. **Revisión en lotes** (al cerrar cada fase o mensualmente); los cambios se anotan en §10.
 5. **Una fase cuenta como cumplida** solo si cada criterio tiene prueba o evidencia enlazada.
+6. **El hosting es intercambiable:** una selección inicial no es compromiso permanente; el sitio conserva el contrato agnóstico de `ADR-004` y verifica cada migración.
 
 ## 6. Fases
 
@@ -74,6 +79,16 @@ Un solo frente activo por vez. Hito previo al lanzamiento: **Puerta `LU-G-L`**.
 | LU-F0-S3 | Existe estrategia escrita para no romper URLs publicadas |
 | LU-F0-S4 | Ninguna integración externa es requisito oculto del build |
 | LU-F0-S5 | Contrato v1 acordado con Atelier y fixtures compartidas (**INT-1**) |
+
+**Revisión de evidencia de F0 (2026-10-15)**
+
+| Criterio | Estado | Evidencia / brecha |
+|---|---|---|
+| LU-F0-S1 | Verificado | `ADR-INT-002`, `SPEC-005` y README distinguen PR/previews como staging y `main` como producción con revisión humana antes del merge. Conectar Workers Builds queda para la configuración operativa, no bloquea este criterio documental de F0. |
+| LU-F0-S2 | Verificado localmente | `contract/v1/obra.schema.json`, `capitulo.schema.json` y `publicacion.schema.json` rechazan propiedades adicionales; hay fixture de campo desconocido. |
+| LU-F0-S3 | Verificado | `ADR-003` aceptado: fija rutas `/obras/{work}/` y `/obras/{work}/{slug}/`, conserva `uid` estable y exige redirección permanente desde un registro independiente del proveedor. El formato portable y la prueba real corresponden a F3 / `INT-4`. |
+| LU-F0-S4 | Verificado | `astro check` pasó con 0 errores/warnings/hints y `astro build` generó salida `static` sin integraciones externas. Aún no hay rutas ni páginas (0 páginas construidas), propio de F0. |
+| LU-F0-S5 / INT-1 | Parcial | `ADR-INT-001` y `ADR-INT-003` aceptados; matriz y diez casos sintéticos nuevos en `contract/v1/fixtures/lumbre-only/`. La copia Atelier sigue con el paquete base de diez archivos y no se modificó; hace falta sincronizar hash y acordar/implementar cobertura equivalente en su validador. |
 
 ### F1 — Validación y publicación segura · *Next*
 **Objetivo:** que sea imposible publicar algo incorrecto, antes de construir más interfaz.
@@ -133,6 +148,9 @@ Un solo frente activo por vez. Hito previo al lanzamiento: **Puerta `LU-G-L`**.
 
 No se planifican ni se crean carpetas hasta que su puerta se abra.
 
+### C4 — Monetización publicitaria · Hipótesis diferida `H-LU-04`
+**Revisión:** después de F2, cuando existan páginas publicadas y señales de audiencia. La comparación preliminar favorece evaluar AdSense como experimento inicial; no constituye una elección ni autorización de integración. Antes de activar C4 se requiere SPEC y ADR N2 que documenten datos transmitidos (incluido análisis de texto de páginas con anuncios), privacidad/consentimiento por región, contenido admisible, ubicación de espacios, economía esperada y método de retirada. No añadir scripts, CMP, `ads.txt` ni SDKs mientras siga diferida.
+
 ### C1 — Comentarios · Puerta `LU-G-C`
 **Entrada:** lectores recurrentes + decisión de moderación + aceptación explícita de la dependencia de GitHub si se elige Giscus.
 **Alcance posible:** Giscus, categoría de Discussions, mapeo por pathname, normas de comunidad, *fallback* si el script falla.
@@ -178,3 +196,13 @@ Multi-autor · cuentas · perfiles · pagos · suscripciones propias · mensajes
 | Fecha | Cambio | Motivo | Qué se pospuso |
 |---|---|---|---|
 | 2026-10-13 | Reescritura: IDs de trazabilidad; contrato y fixtures movidos a F0; **validación/CI (antes “Fase 2”) adelantada a F1**, antes de la interfaz; comentarios, analítica y Nivel 2 agrupados como fases condicionadas; añadidas Puerta `LU-G-L` e hitos `INT`; nota de hosting actualizada | El riesgo principal es publicar algo incorrecto; el contrato debe ser ejecutable antes que el shell | — |
+| 2026-10-15 | Revisión de evidencia F0; creado índice; propuestas SPEC-001/002 y ADR-001/002/003/INT-003; corregido el estado de v1 y actualizada la nota de hosting con fuentes oficiales | Contrastar el roadmap con el repositorio y documentación vigente de proveedores/framework | Aprobación humana de SPEC/ADR; evidencia Atelier; implementación de F1 tras cerrar F0 |
+| 2026-10-15 | Aprobados `SPEC-003` y `ADR-004`: contrato de despliegue agnóstico al proveedor y migración posible sin rehacer contenido ni lógica editorial | Instrucción explícita del propietario; formaliza `ARQ-4` | Cada proveedor requiere su adaptador/configuración, validación y transición operativa |
+| 2026-10-15 | Aprobada `SPEC-004` y aceptado `ADR-002`: Cloudflare Workers static assets como proveedor inicial | Elección explícita del propietario | Confirmar cuenta/plan y verificar previews, redirects y headers antes de lanzamiento |
+| 2026-10-15 | Registrada `H-LU-04` y C4 como hipótesis publicitaria diferida; añadidas recomendaciones concretas pendientes de aprobación a `ADR-001` (Astro 6 estático) y `ADR-003` (`/obras/{work}/{slug}/`) | Mantener el análisis de Ads para después de F2 y preparar el cierre de decisiones de F0 antes de crear la app | Sin integración Ads ni emisión de URLs públicas; framework y rutas esperan aprobación humana |
+| 2026-10-15 | Aceptados `ADR-001` (Astro 6 estático) y `ADR-003` (rutas bajo `/obras/`) por aprobación explícita del propietario; aprobada `SPEC-002` | Cerrar decisiones base de F0 para comenzar la implementación ordenada | Cuenta/plan Cloudflare sigue para `LU-G-L`; SPEC-001/ADR-INT-003 y evidencia Atelier siguen pendientes |
+| 2026-10-15 | Aprobada `SPEC-005`: base Astro estática, colecciones estrictas derivadas del contrato y configuración Workers aislada; inicia F0 de implementación | Autorización explícita del propietario para crear el sitio fase por fase | Fixtures completas y acuerdo Atelier, políticas editorial/privacidad y validación F1 siguen pendientes |
+| 2026-10-15 | Verificada en modo lectura la copia de contrato v1 en Atelier: la lista de hashes coincide con los diez archivos fuente; actualizado `LU-F0-S5/INT-1` como parcial, no completado | Ruta de Atelier proporcionada por el propietario; repositorio informa F0 completada | Completar fixtures `PUB-3` de Lumbre y conservar el checkout Atelier sin modificaciones |
+| 2026-10-15 | Actualizados los paquetes del sitio con pnpm a versiones estables recientes; `ADR-001` y `SPEC-005` pasan de Astro 6 a Astro 7 por petición explícita del propietario; TypeScript queda en 6.0.3 porque Astro Check rechaza 7.0.2; corregido el inventario de contrato Atelier a diez archivos | Solicitud de usar pnpm y actualizar dependencias, con consulta de fuentes vigentes | Validación local Astro 7 y cierre de CA de SPEC-005 pendientes |
+| 2026-10-15 | Verificada `SPEC-005`: lockfile congelado al día, Astro Check sin diagnósticos, build estático exitoso (0 páginas en esta fase), schemas estrictos probados en memoria y configuración Workers aislada; `LU-F0-S4` pasa a verificado | Completar la verificación local autorizada tras el cambio de dependencias | F0 conserva brechas en fixtures, políticas editorial/privacidad, política de slug/redirecciones y `INT-1`; F2 aún debe crear las páginas. Auditoría de vulnerabilidades pendiente |
+| 2026-10-15 | Aprobadas `SPEC-001` y `ADR-INT-003` tras «continua»; añadido el grupo sintético `lumbre-only`, manifiesto SHA-256 fuente verificado (21 archivos) y borradores internos editorial/privacidad | Continuar F0 sin editar el checkout Atelier ni atribuirle reglas que su autotest no valida; preparar documentación sin publicarla con datos del responsable o configuración sin confirmar | Sincronización/hash y reglas adicionales con Atelier; aprobación y datos de contacto/configuración para políticas; revisión humana de dominio provisional |

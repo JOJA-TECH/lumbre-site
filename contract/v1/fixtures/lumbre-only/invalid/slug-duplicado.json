@@ -1,0 +1,17 @@
+{
+  "case_version": 1,
+  "id": "invalid-slug-duplicado",
+  "expected": "reject",
+  "rule": "PUB-3: slug único dentro de la obra",
+  "publication": {
+    "obra": { "contract_version": 1, "work": "slug-fixture", "title": "Obra sintética", "author": "Fixture", "lang": "es", "type": "serial", "synopsis": "Datos de prueba." },
+    "capitulos": [
+      { "contract_version": 1, "work": "slug-fixture", "slug": "mismo-slug", "title": "Capítulo uno", "uid": "fixture-slug-01", "status": "publicado", "date_published": "2026-09-01", "order": 1, "source_revision": "abcdef1" },
+      { "contract_version": 1, "work": "slug-fixture", "slug": "mismo-slug", "title": "Capítulo dos", "uid": "fixture-slug-02", "status": "publicado", "date_published": "2026-09-02", "order": 2, "source_revision": "abcdef2" }
+    ]
+  },
+  "bodies": [
+    { "chapter_index": 0, "markdown": "Texto sintético uno." },
+    { "chapter_index": 1, "markdown": "Texto sintético dos." }
+  ]
+}

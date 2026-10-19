@@ -1,0 +1,13 @@
+{
+  "case_version": 1,
+  "id": "invalid-cuerpo-vacio",
+  "expected": "reject",
+  "rule": "PUB-3: cuerpo Markdown no vacío",
+  "publication": {
+    "obra": { "contract_version": 1, "work": "cuerpo-fixture", "title": "Obra sintética", "author": "Fixture", "lang": "es", "type": "relato", "synopsis": "Datos de prueba." },
+    "capitulos": [
+      { "contract_version": 1, "work": "cuerpo-fixture", "slug": "capitulo", "title": "Capítulo", "uid": "fixture-body-01", "status": "publicado", "date_published": "2026-09-01", "source_revision": "abcdef1" }
+    ]
+  },
+  "bodies": [{ "chapter_index": 0, "markdown": "  \n  " }]
+}

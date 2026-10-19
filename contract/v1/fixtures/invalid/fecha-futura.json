@@ -1,0 +1,23 @@
+{
+  "obra": {
+    "contract_version": 1,
+    "work": "fecha-futura",
+    "title": "Obra sintética",
+    "author": "Fixture",
+    "lang": "es",
+    "type": "relato",
+    "synopsis": "Datos sintéticos para verificar rechazo de fechas futuras."
+  },
+  "capitulos": [
+    {
+      "contract_version": 1,
+      "work": "fecha-futura",
+      "slug": "capitulo",
+      "title": "Capítulo sintético",
+      "uid": "fixture-future-01",
+      "status": "publicado",
+      "date_published": "2099-12-31",
+      "source_revision": "abcdef1"
+    }
+  ]
+}

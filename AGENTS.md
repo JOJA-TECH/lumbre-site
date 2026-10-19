@@ -2,13 +2,13 @@
 
 > Instrucciones operativas para agentes y colaboradores. Contiene **reglas**, no estado ni planes.
 > Estrategia, fases y criterios de salida: [`ROADMAP.md`](ROADMAP.md). Plantillas: `docs/templates/`.
-> Última revisión: 2026-10-13
+> Última revisión: 2026-10-15
 
 ## 1. Qué es este repositorio
 
 Sitio público de lectura de relatos y novelas serializadas exportados desde **deepwrite-atelier**. Nivel 1: sitio editorial **estático**, versionado en Git, construido desde Markdown con frontmatter.
 
-- Stack previsto: Astro en modo estático + Content Collections. *(Propuesta hasta ADR de framework.)*
+- Stack decidido: Astro 7 en modo estático + Content Collections (`ADR-001`).
 - Lumbre **es dueño del contrato de contenido**: Atelier se ajusta a él (`ADR-INT-001`).
 - Fuera del Nivel 1: cuentas, perfiles, pagos, colaboración, mensajes privados, multi-autor. Requieren otra SPEC, otro modelo de amenazas y posiblemente otra arquitectura (Puerta `LU-G-D`).
 - Lo que no esté en este archivo, el ROADMAP o un ADR aceptado **no está decidido**: pregunta.
@@ -58,7 +58,7 @@ Sitio público de lectura de relatos y novelas serializadas exportados desde **d
 - **ARQ-1** Sitio estático. Pasar a SSR/backend exige ADR y pasar la Puerta `LU-G-D`.
 - **ARQ-2** Código **por funcionalidad** en `src/features/<feature>/` (rutas auxiliares, componentes, tipos, validaciones y pruebas juntos). `src/pages/` solo compone y enruta. Sin `utils/`, `helpers/` o `components/` genéricos.
 - **ARQ-3** `features/comments/` y `features/analytics/` deben poder eliminarse sin tocar el flujo de lectura. No se crean hasta que su fase condicionada se active.
-- **ARQ-4** El resultado de `build` es un `dist/` estático **portable**: ningún código depende del proveedor de hosting. Lo específico del proveedor vive en su archivo de configuración.
+- **ARQ-4** El resultado de `build` es un `dist/` estático **portable**: ningún código del sitio depende del proveedor de hosting. El contenido, las rutas editoriales y la lógica de lectura siguen siendo agnósticos al proveedor; lo específico de despliegue (preview, redirecciones, cabeceras, publicación y DNS) vive en adaptadores/configuración aislados. Se puede cambiar de proveedor en cualquier momento operativo sin rehacer contenido ni lógica editorial, pero el cambio exige adaptar y verificar esa configuración y puede requerir propagación DNS o una ventana de transición; no implica cero interrupción ni equivalencia de funciones exclusivas.
 - **ARQ-5** RSS y sitemap se generan del mismo contenido validado que produce las páginas.
 
 ### Privacidad y dependencias externas
@@ -86,9 +86,9 @@ exportación de Atelier
 - **PUB-2** Revertir un capítulo es un `git revert` de su cambio, sin alterar otros capítulos. Se prueba en F1.
 - **PUB-3** El build **falla** ante: frontmatter inválido o con campos desconocidos · slug duplicado · serial sin `order` o con órdenes repetidos · fecha inválida o futura · estado no publicable · contenido vacío no permitido · enlaces internos rotos · campo privado.
 
-## 7. Contrato de contenido v1 — *propuesto hasta `ADR-INT-001`*
+## 7. Contrato de contenido v1 — *acordado por `ADR-INT-001`*
 
-La fuente definitiva será `contract/` (JSON Schema versionado). Hasta entonces, este es el borrador de trabajo:
+La fuente definitiva es `contract/` (JSON Schema versionado). El contrato v1 fue aceptado en `ADR-INT-001`; el resumen siguiente sirve como referencia operativa:
 
 **Obra** — `content/<work>/_obra.md`
 

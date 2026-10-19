@@ -1,0 +1,13 @@
+{
+  "case_version": 1,
+  "id": "invalid-id-interno-en-cuerpo",
+  "expected": "reject",
+  "rule": "PUB-3: no exponer identificador interno de Atelier",
+  "publication": {
+    "obra": { "contract_version": 1, "work": "id-fixture", "title": "Obra sintética", "author": "Fixture", "lang": "es", "type": "relato", "synopsis": "Datos de prueba." },
+    "capitulos": [
+      { "contract_version": 1, "work": "id-fixture", "slug": "capitulo", "title": "Capítulo", "uid": "fixture-id-0001", "status": "publicado", "date_published": "2026-09-01", "source_revision": "abcdef1" }
+    ]
+  },
+  "bodies": [{ "chapter_index": 0, "markdown": "Metadata de fixture: atelier_internal_id=demo-record-42." }]
+}

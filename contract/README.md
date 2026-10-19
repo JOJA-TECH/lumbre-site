@@ -1,7 +1,8 @@
 # Contract — Contrato de contenido (fuente de verdad)
-
 > **Lumbre es dueño del contrato**; Atelier se ajusta a él (`ADR-INT-001`). Esta carpeta es la **fuente**.
 > Atelier mantiene una **copia fijada con hash** en `deepwrite-atelier/contracts/`.
+El manifiesto fuente [`SHA256SUMS`](SHA256SUMS) lista, con rutas relativas `v1/`, todos los archivos del paquete. Al sincronizarlo, se copian `contract/v1/` y el manifiesto a `contracts/` en Atelier; allí se recalculan los SHA-256 y se comparan antes de ejecutar el autotest. Una coincidencia prueba identidad de archivos, no paridad de reglas que cada validador ejecuta.
+
 
 ## Versión
 
@@ -42,9 +43,10 @@ El frontmatter es **YAML**; los schemas describen los campos. El cuerpo Markdown
 | `v1/fixtures/invalid/estado-borrador.json` | Estado no publicable (`CON-2`). |
 | `v1/fixtures/invalid/serial-sin-order.json` | Serial sin `order`. |
 | `v1/fixtures/invalid/fecha-invalida.json` | Fecha con formato incorrecto. |
+| `v1/fixtures/invalid/fecha-futura.json` | Fecha futura rechazada por validación adicional del lote. |
 | `v1/fixtures/invalid/falta-campo.json` | Falta `synopsis` en la obra. |
 
-Las fixtures se comparten: Atelier las usa para probar su exportador; Lumbre, para su validador (`CON-4`).
+Las fixtures de esquema en `v1/fixtures/valid/` y `v1/fixtures/invalid/` son compartidas: Atelier las usa en su autotest y Lumbre las usará en su validador (`CON-4`). Los casos de publicación adicionales viven bajo `v1/fixtures/lumbre-only/` porque el validador actual de Atelier no ejecuta unicidad de slug/order ni los detectores del cuerpo. El formato y expectativas están en [`lumbre-only/README.md`](v1/fixtures/lumbre-only/README.md). Aunque el paquete completo se copie y se verifique por SHA-256 en Atelier, una copia igual no equivale a que ambos validadores comprueben todas las mismas reglas.
 
 ## Cambios
 
@@ -53,3 +55,4 @@ Registrar aquí cada cambio de contrato con fecha y motivo.
 | Fecha | Cambio | Motivo |
 |---|---|---|
 | 2026-10-13 | v1 inicial | `ADR-INT-001`: formaliza el borrador de `AGENTS.md` §7. |
+| 2026-10-15 | Grupo sintético `lumbre-only` y manifiesto fuente | `SPEC-001` + `ADR-INT-003`: cubre publicación/cuerpo sin añadir campos al contrato ni romper el autotest actual de Atelier. Requiere sincronización del paquete por el mantenedor de Atelier para cerrar `INT-1`. |
