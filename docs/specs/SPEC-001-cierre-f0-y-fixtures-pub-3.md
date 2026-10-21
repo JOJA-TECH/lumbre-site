@@ -5,7 +5,7 @@
 - **Repo:** lumbre-site (coordinación con deepwrite-atelier para `INT-1`)
 - **Origen:** criterios de `ROADMAP.md`; revisión del repositorio 2026-10-15
 - **Cubre:** `LU-F0-S1…S5`, `LU-F1-S1…S4`, `INT-1`
-- **ADR relacionados:** `ADR-INT-001`, `ADR-INT-002`, `ADR-INT-003` (propuesto)
+- **ADR relacionados:** `ADR-INT-001`, `ADR-INT-002`, `ADR-INT-003` (aceptado)
 - **Reglas de AGENTS.md que aplican:** `CON-2…CON-4`, `CON-5`, `PUB-3`
 - **Fecha / autor:** 2026-10-15 · aprobada por la instrucción del propietario «continua»
 

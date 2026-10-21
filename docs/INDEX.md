@@ -17,4 +17,4 @@ Fuente de criterios: [`ROADMAP.md`](../ROADMAP.md). Los criterios solo se marcan
 | ADR-003 | URLs públicas, slug y redirecciones | Aceptado | `LU-F0-S3`, `LU-F3-S5`, `CON-5`, `INT-4` | `SPEC-002` | — |
 | ADR-004 | Agnosticismo al proveedor y cambio de hosting | Aceptado | `ARQ-4`, `LU-F0-S1`, `LU-G-L` | `SPEC-003` | — |
 
-No hay PRs ni pruebas de implementación registrados todavía. `SPEC-001` y `ADR-INT-003` siguen propuestos y no autorizan cambios en fixtures del contrato.
+No hay PRs ni pruebas de implementación registrados todavía. `SPEC-001` está aprobada y `ADR-INT-003` aceptado (instrucción «continua» del propietario, 2026-10-15): autorizan el grupo de fixtures `lumbre-only`.
