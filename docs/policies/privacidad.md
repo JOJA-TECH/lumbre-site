@@ -38,6 +38,16 @@ Lumbre no mantiene actualmente un almacén propio de datos de lectores. La durac
 
 La persona titular podrá solicitar, según corresponda, conocer, actualizar y rectificar sus datos personales, conocer su uso, solicitar prueba de autorización cuando aplique, y pedir revocatoria o supresión en los casos legalmente procedentes. El canal, procedimiento de verificación de identidad y plazos de atención quedan pendientes de definir antes de publicar. La Ley 1581 de 2012 establece derechos de titulares y deberes para responsables y encargados; el flujo debe revisarse contra el tratamiento real de Lumbre.
 
+Procedimiento propuesto de consultas y reclamos (propuesta — pendiente de aprobación):
+
+1. **Recepción:** la solicitud llega por el canal único de contacto (el definido en «Responsable y contacto», aún pendiente de completar).
+2. **Acuse de recibo:** confirmación de recepción en un plazo de [placeholder].
+3. **Verificación de identidad:** comprobación mínima suficiente antes de atender la solicitud, por el medio que se defina en [placeholder].
+4. **Respuesta:** atención o respuesta motivada en un plazo de [placeholder], conforme a la Ley 1581 de 2012.
+5. **Registro interno:** anotación con fecha de la solicitud recibida, la atención dada y la respuesta enviada.
+
+Este procedimiento debe probarse de punta a punta (por ejemplo, con una solicitud simulada) antes de publicar la política; los plazos definitivos y el canal requieren decisión del propietario.
+
 ## Cambios y estado de publicación
 
 Esta página interna no está lista para mostrarse a visitantes. Antes de pasarla a una ruta pública deben resolverse todos los pendientes siguientes:
@@ -45,7 +55,7 @@ Esta página interna no está lista para mostrarse a visitantes. Antes de pasarl
 - Identidad y datos de contacto del responsable.
 - Cuenta, plan, condiciones y configuración real del hosting.
 - Registros, cookies, regiones, proveedores secundarios y retención efectiva.
-- Procedimiento de consultas/reclamos, responsable de responder y proceso de supresión/rectificación.
+- Aprobar y probar el procedimiento propuesto de consultas/reclamos, incluido el proceso de supresión/rectificación.
 - Determinación aplicable sobre registros regulatorios y otras obligaciones según la situación del responsable.
 - Revisión legal de la versión destinada a publicación.
 
