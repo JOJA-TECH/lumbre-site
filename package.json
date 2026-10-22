@@ -13,11 +13,14 @@
     "dev": "astro dev",
     "check": "astro check",
     "build": "astro build",
-    "preview": "wrangler dev"
+    "preview": "wrangler dev",
+    "validate": "tsx src/features/validation/cli.ts",
+    "test:contract": "tsx src/features/validation/cli.ts --fixtures"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
     "astro": "^7.3.8",
+    "tsx": "^4.23.15",
     "typescript": "6.0.3",
     "wrangler": "^4.151.0"
   }
