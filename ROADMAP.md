@@ -1,7 +1,7 @@
 # ROADMAP — Lumbre (`lumbre-site`)
 
 > Qué se construye, en qué orden y con qué evidencia se da por cumplido. Las **reglas de trabajo** están en [`AGENTS.md`](AGENTS.md).
-> Última revisión: 2026-10-15 · Las fases son una **secuencia**, no un calendario: una fase avanza solo cuando cumple sus criterios de salida.
+> Última revisión: 2026-10-21 · Las fases son una **secuencia**, no un calendario: una fase avanza solo cuando cumple sus criterios de salida.
 
 ## 1. Cómo leer este documento
 
@@ -27,7 +27,7 @@
 
 Un solo frente activo por vez. Hito previo al lanzamiento: **Puerta `LU-G-L`**.
 
-**Estado al 2026-10-15:** F0 sigue activa y está parcialmente completada. Las decisiones base (Astro 7 estático, URLs y Cloudflare Workers Static Assets) y la portabilidad están aceptadas; SPEC-005 autoriza la base de aplicación. En revisión de solo lectura, Atelier declaraba F0 completada y su `SHA256SUMS` coincidía con los diez archivos fuente base. La expansión actual de fixtures en Lumbre agrega un grupo sintético `lumbre-only`; la copia Atelier queda pendiente de sincronización y su autotest actual aún no cubre varias de esas reglas. No declarar `INT-1` ni F0 cumplidos hasta verificar la copia y acordar esa cobertura.
+**Estado al 2026-10-21:** Cierre C0 de F0 ejecutado: políticas editorial y de privacidad aprobadas en texto (aviso de asistencia de IA: opción B), propuesta de nombre y dominio candidato documentada (`docs/name-and-domain.md`), contradicción del índice de trazabilidad resuelta y manifiesto `contract/SHA256SUMS` verificado (21/21 hashes). Sigue parcial `LU-F0-S5/INT-1` (mirror de fixtures y cobertura en Atelier) y faltan identidad/contacto del responsable para publicar políticas. Ciclo C1 en ejecución: `SPEC-006` (validador de contenido + CI) aprobada por instrucción del propietario.
 
 ## 3. Riesgos
 
@@ -206,3 +206,4 @@ Multi-autor · cuentas · perfiles · pagos · suscripciones propias · mensajes
 | 2026-10-15 | Actualizados los paquetes del sitio con pnpm a versiones estables recientes; `ADR-001` y `SPEC-005` pasan de Astro 6 a Astro 7 por petición explícita del propietario; TypeScript queda en 6.0.3 porque Astro Check rechaza 7.0.2; corregido el inventario de contrato Atelier a diez archivos | Solicitud de usar pnpm y actualizar dependencias, con consulta de fuentes vigentes | Validación local Astro 7 y cierre de CA de SPEC-005 pendientes |
 | 2026-10-15 | Verificada `SPEC-005`: lockfile congelado al día, Astro Check sin diagnósticos, build estático exitoso (0 páginas en esta fase), schemas estrictos probados en memoria y configuración Workers aislada; `LU-F0-S4` pasa a verificado | Completar la verificación local autorizada tras el cambio de dependencias | F0 conserva brechas en fixtures, políticas editorial/privacidad, política de slug/redirecciones y `INT-1`; F2 aún debe crear las páginas. Auditoría de vulnerabilidades pendiente |
 | 2026-10-15 | Aprobadas `SPEC-001` y `ADR-INT-003` tras «continua»; añadido el grupo sintético `lumbre-only`, manifiesto SHA-256 fuente verificado (21 archivos) y borradores internos editorial/privacidad | Continuar F0 sin editar el checkout Atelier ni atribuirle reglas que su autotest no valida; preparar documentación sin publicarla con datos del responsable o configuración sin confirmar | Sincronización/hash y reglas adicionales con Atelier; aprobación y datos de contacto/configuración para políticas; revisión humana de dominio provisional |
+| 2026-10-21 | Ejecutado el cierre C0 de F0 con `docs/EXECUTION-PLAN.md`: aprobadas en texto las políticas editorial y de privacidad (aviso de IA: opción B), propuesta de nombre/dominio creada, contradicción de `docs/INDEX.md` resuelta y manifiesto `SHA256SUMS` verificado (21/21); aprobada `SPEC-006` y ejecutándose el ciclo C1 (validador + CI) | Instrucción explícita del propietario (aprobación de políticas y «continua» del plan) | Mirror de fixtures y cobertura en Atelier (`INT-1`), identidad/contacto del responsable, verificación de dominio en `LU-G-L`, prueba real de reversión con primer contenido (`LU-F1-S5`, `INT-2`) |
