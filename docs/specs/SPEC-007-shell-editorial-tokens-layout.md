@@ -62,8 +62,8 @@ Si `test:a11y` detecta contraste insuficiente, nombra el par de tokens, el valor
 
 | Criterio | Prueba / verificación | PR / commit |
 |---|---|---|
-| CA-1 | Pendiente | Pendiente |
-| CA-2 | Pendiente | Pendiente |
-| CA-3 | Pendiente | Pendiente |
-| CA-4 | Pendiente | Pendiente |
-| CA-5 | Pendiente | Pendiente |
+| CA-1 | Revisión de código: skip-link visible solo en `:focus-visible`; `outline: 2px solid var(--color-focus)` con offset; targets ≥44px | 1bccd23 |
+| CA-2 | `pnpm test:a11y`: 9/9 pares AA (mín. texto 4.5:1, no-texto 3:1); caso negativo probado (exit 1 nombrando par/valor/mínimo) | bdc8555 |
+| CA-3 | `pnpm build` genera 1 página; `grep` en `dist/`: 0 `<script>`, 0 URLs externas (solo `/_astro/`) | 1bccd23 |
+| CA-4 | Revisión: `global.css` y layout sin colores literales; solo nombres del contrato | 3a467ec |
+| CA-5 | Revisión: única dependencia nueva `@fontsource-variable/literata` autoalojada; sin comentarios, analítica ni terceros | 3a467ec |

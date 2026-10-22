@@ -19,6 +19,8 @@ Sitio editorial **estático** para leer relatos y novelas serializadas exportada
 | Ruta | Rol | Estado |
 |---|---|---|
 | `src/features/content/` | Único feature: colecciones (`collections.ts`) y schemas Zod derivados del contrato (`schemas.ts`) | Verificado (SPEC-005) |
+| `src/features/reading/` | Layout global accesible (`BaseLayout`) y verificador de contraste (`a11y-tokens.ts`) | Verificado (SPEC-007) |
+| `src/styles/` | Tokens de diseño «Papel frío, tinta y brasa» (WCAG AA, Literata autoalojada) y CSS base del shell | Verificado (SPEC-007) |
 | `src/features/validation/` | Validador CLI de reglas `PUB-3` (`pnpm validate` / `pnpm test:contract`, 17/17 fixtures); reutiliza los schemas Zod | Verificado (SPEC-006) |
 | `src/content.config.ts` | Punto de entrada de Content Collections; solo reexporta | Verificado |
 | `contract/v1/` | Fuente del contrato: `obra`, `capitulo`, `publicacion` (JSON Schema) + fixtures `valid/`, `invalid/`, `lumbre-only/` y `SHA256SUMS` | Aceptado; copia Atelier pendiente de sincronizar |
@@ -42,7 +44,7 @@ Atelier (escritura, estados borrador/buffer/aprobado — ADR-INT-002)
 
 ## 4. Estado y tareas pendientes (según ROADMAP §6 y registro de cambios)
 
-**Fase activa: F0 en cierre + C1 (F1) ejecutado localmente.** Políticas aprobadas en texto (aviso IA: opción B); `SPEC-006` verificada (validador 17/17 fixtures + CI definido). Pendiente: mirror Atelier (`INT-1`), identidad del responsable, y `LU-F1-S5/S6` con primer contenido real. Ejecución por ciclos: [`docs/EXECUTION-PLAN.md`](EXECUTION-PLAN.md).
+**Fase activa: F2 — C2a ejecutado.** Shell editorial listo: tokens WCAG AA verificados por script, layout global accesible con 0 JS, dirección de diseño documentada. Sigue C2b (páginas reales). F1 verificada localmente (SPEC-006, 17/17 fixtures); `LU-F1-S5/S6` esperan contenido real. Ejecución por ciclos: [`docs/EXECUTION-PLAN.md`](EXECUTION-PLAN.md).
 
 | # | Tarea | Fase / criterio |
 |---|---|---|
