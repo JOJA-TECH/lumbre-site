@@ -1,0 +1,54 @@
+---
+// Sobre el proyecto: qué es Lumbre, aviso de IA aprobado (opción B, literal) y revisión humana (SPEC-008).
+import BaseLayout from '../features/reading/layouts/BaseLayout.astro';
+---
+<BaseLayout
+  title="Sobre el proyecto"
+  description="Qué es Lumbre: ficción en español para leer con calma, con asistencia de IA y revisión humana."
+>
+  <h1>Sobre Lumbre</h1>
+  <p>
+    Lumbre es un sitio de lectura de ficción en español: relatos y novelas por entregas para leer
+    con calma, sin anuncios ni distracciones.
+  </p>
+  <h2>Asistencia de IA y revisión humana</h2>
+  <p>
+    Las historias parten de una intención editorial humana y pueden redactarse con asistencia de
+    herramientas de IA como apoyo de escritura. El aviso de procedencia de Lumbre es este:
+  </p>
+  <blockquote>
+    <p>
+      Parte de las historias de Lumbre se redactaron con asistencia de herramientas de IA como
+      apoyo de escritura. Cada texto publicado fue revisado íntegramente por una persona, que
+      corrigió y aprobó la versión final. La nota se muestra en las obras a las que aplica.
+    </p>
+  </blockquote>
+  <h2>Publicación y correcciones</h2>
+  <p>
+    Ninguna obra se publica sin que una persona revise el texto completo y apruebe la versión
+    final. Las correcciones de los textos ya publicados quedan documentadas.
+  </p>
+</BaseLayout>
+
+<style>
+  h1 {
+    font-size: var(--text-xl);
+    font-weight: 600;
+  }
+  p {
+    margin-block-start: var(--space-2);
+  }
+  h2 {
+    margin-block-start: var(--space-5);
+    font-size: var(--text-lg);
+    font-weight: 500;
+  }
+  blockquote {
+    margin-block-start: var(--space-3);
+    padding-inline-start: var(--space-3);
+    border-inline-start: 1px solid var(--color-border);
+  }
+  blockquote p {
+    margin-block-start: 0;
+  }
+</style>
