@@ -15,10 +15,12 @@
     "build": "astro build",
     "preview": "wrangler dev",
     "validate": "tsx src/features/validation/cli.ts",
-    "test:contract": "tsx src/features/validation/cli.ts --fixtures"
+    "test:contract": "tsx src/features/validation/cli.ts --fixtures",
+    "test:a11y": "tsx src/features/reading/a11y-tokens.ts"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
+    "@fontsource-variable/literata": "^5.3.0",
     "astro": "^7.3.8",
     "tsx": "^4.23.15",
     "typescript": "6.0.3",

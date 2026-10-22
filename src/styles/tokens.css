@@ -1,0 +1,41 @@
+/* ------------------------------------------------------------------
+   Lumbre — tokens de diseño (SPEC-007, ciclo C2a)
+   Nombres fijados por contrato; valores y justificación en
+   docs/design/design-direction.md. Verificación: pnpm test:a11y.
+   ------------------------------------------------------------------ */
+:root {
+  /* Color — papel frío, tinta azulada, brasa de óxido, noche de foco */
+  --color-bg: #EDEFE9; /* papel reciclado frío: fondo general de lectura */
+  --color-surface: #F8FAF5; /* pliego: paneles y superficies sobre el papel */
+  --color-border: #79828C; /* línea: filete visible, ≥3:1 sobre el papel */
+  --color-text: #1E2430; /* tinta: texto, azul-negro de escritura */
+  --color-text-muted: #55606B; /* ceniza: metadatos y texto secundario */
+  --color-accent: #9C3B22; /* brasa: enlaces y marca, óxido de encuadernación */
+  --color-accent-contrast: #FBF6EE; /* texto sobre brasa */
+  --color-focus: #1F4E5F; /* noche: anillo de foco; el único azul frío, del teclado */
+
+  /* Tipografía — Literata Variable, familia única de lectura (autoalojada) */
+  --font-body: 'Literata Variable', Georgia, 'Times New Roman', serif;
+
+  /* Escala fluida 320px → 1200px */
+  --text-sm: clamp(0.875rem, 0.848rem + 0.135vw, 0.9375rem);
+  --text-base: clamp(1.0625rem, 1.017rem + 0.227vw, 1.1875rem);
+  --text-lg: clamp(1.25rem, 1.182rem + 0.424vw, 1.5rem);
+  --text-xl: clamp(1.5rem, 1.318rem + 0.909vw, 2rem);
+  --text-2xl: clamp(1.875rem, 1.557rem + 1.591vw, 2.75rem);
+
+  /* Medida y ritmo — escala lineal de 0.5rem */
+  --measure: 65ch;
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-5: 2.5rem;
+  --space-6: 3rem;
+  --space-7: 3.5rem;
+  --space-8: 4rem;
+
+  /* Radios — discretos, solo lo que cierra una superficie */
+  --radius-1: 0.25rem;
+  --radius-2: 0.5rem;
+}
