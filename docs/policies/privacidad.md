@@ -1,6 +1,6 @@
 # Política de privacidad — borrador interno
 
-- **Estado:** Borrador; no publicar
+- **Estado:** Texto aprobado por el propietario (2026-10-21); NO publicar hasta completar identidad/contacto y verificar la configuración real del hosting
 - **Fecha:** 2026-10-15
 - **Alcance:** futura web pública estática de Lumbre
 
@@ -38,7 +38,7 @@ Lumbre no mantiene actualmente un almacén propio de datos de lectores. La durac
 
 La persona titular podrá solicitar, según corresponda, conocer, actualizar y rectificar sus datos personales, conocer su uso, solicitar prueba de autorización cuando aplique, y pedir revocatoria o supresión en los casos legalmente procedentes. El canal, procedimiento de verificación de identidad y plazos de atención quedan pendientes de definir antes de publicar. La Ley 1581 de 2012 establece derechos de titulares y deberes para responsables y encargados; el flujo debe revisarse contra el tratamiento real de Lumbre.
 
-Procedimiento propuesto de consultas y reclamos (propuesta — pendiente de aprobación):
+Procedimiento de consultas y reclamos (aprobado 2026-10-21; debe probarse de punta a punta antes de publicar la política):
 
 1. **Recepción:** la solicitud llega por el canal único de contacto (el definido en «Responsable y contacto», aún pendiente de completar).
 2. **Acuse de recibo:** confirmación de recepción en un plazo de [placeholder].
@@ -55,7 +55,7 @@ Esta página interna no está lista para mostrarse a visitantes. Antes de pasarl
 - Identidad y datos de contacto del responsable.
 - Cuenta, plan, condiciones y configuración real del hosting.
 - Registros, cookies, regiones, proveedores secundarios y retención efectiva.
-- Aprobar y probar el procedimiento propuesto de consultas/reclamos, incluido el proceso de supresión/rectificación.
+- Probar el procedimiento aprobado de consultas/reclamos, incluido el proceso de supresión/rectificación.
 - Determinación aplicable sobre registros regulatorios y otras obligaciones según la situación del responsable.
 - Revisión legal de la versión destinada a publicación.
 
