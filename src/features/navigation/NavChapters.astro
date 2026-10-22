@@ -1,0 +1,95 @@
+---
+// Navegación entre capítulos (SPEC-008 · C2b). Sin JS; enlaces de destino ≥44px (A11Y-1).
+// Con un solo capítulo no hay anterior/siguiente: queda solo el regreso a la obra.
+import type { ChapterEntry } from '../content/queries';
+import { chapterUrl, workUrl } from '../content/queries';
+
+interface Props {
+  work: string;
+  workTitle: string;
+  prev: ChapterEntry | null;
+  next: ChapterEntry | null;
+}
+
+const { work, workTitle, prev, next } = Astro.props;
+---
+
+{
+  (prev || next) && (
+    <nav aria-label="Capítulos">
+      <ul>
+        <li class="anterior">
+          {prev && (
+            <a href={chapterUrl(work, prev.data.slug)}>
+              <span class="direccion">Anterior</span>
+              <span class="destino">{prev.data.title}</span>
+            </a>
+          )}
+        </li>
+        <li class="siguiente">
+          {next && (
+            <a href={chapterUrl(work, next.data.slug)}>
+              <span class="direccion">Siguiente</span>
+              <span class="destino">{next.data.title}</span>
+            </a>
+          )}
+        </li>
+      </ul>
+    </nav>
+  )
+}
+<p class="regreso">
+  <a href={workUrl(work)}>Volver a {workTitle}</a>
+</p>
+
+<style>
+  nav {
+    border-top: 1px solid var(--color-border);
+    margin-block-start: var(--space-6);
+    padding-block-start: var(--space-3);
+  }
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-5);
+    justify-content: space-between;
+    list-style: none;
+    padding: 0;
+  }
+
+  li {
+    flex: 1 1 12rem;
+  }
+
+  .siguiente {
+    text-align: end;
+  }
+
+  li a {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 44px;
+  }
+
+  .direccion {
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+  }
+
+  .destino {
+    font-weight: 500;
+  }
+
+  .regreso {
+    margin-block-start: var(--space-4);
+  }
+
+  .regreso a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    font-size: var(--text-sm);
+  }
+</style>

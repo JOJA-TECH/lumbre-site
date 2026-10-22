@@ -1,0 +1,51 @@
+---
+// Lista de capítulos de un serial, ordenada por `order` (SPEC-008, CA-3).
+import { chapterUrl, type ChapterEntry } from '../content/queries';
+
+interface Props {
+  work: string;
+  chapters: ChapterEntry[];
+}
+
+const { work, chapters } = Astro.props;
+const fecha = new Intl.DateTimeFormat('es', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+  timeZone: 'UTC',
+});
+---
+<ol class="capitulos">
+  {
+    chapters.map((capitulo, i) => (
+      <li>
+        <span class="num">Capítulo {capitulo.data.order ?? i + 1}</span>
+        <a href={chapterUrl(work, capitulo.data.slug)}>{capitulo.data.title}</a>
+        <span class="fecha">{fecha.format(new Date(capitulo.data.date_published))}</span>
+      </li>
+    ))
+  }
+</ol>
+
+<style>
+  .capitulos {
+    list-style: none;
+    padding: 0;
+    margin-block-start: var(--space-2);
+  }
+  .capitulos li {
+    margin-block-end: var(--space-3);
+  }
+  .capitulos a {
+    font-weight: 500;
+  }
+  .num,
+  .fecha {
+    display: block;
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+  }
+  .fecha {
+    margin-block-start: var(--space-1);
+  }
+</style>

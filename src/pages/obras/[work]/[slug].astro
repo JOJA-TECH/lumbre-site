@@ -1,0 +1,132 @@
+---
+// Página de capítulo /obras/{work}/{slug}/ (SPEC-008 · C2b, ADR-003).
+// Solo compone y enruta (ARQ-2); los datos vienen de queries.ts.
+import { render } from 'astro:content';
+import BaseLayout from '../../../features/reading/layouts/BaseLayout.astro';
+import NavChapters from '../../../features/navigation/NavChapters.astro';
+import { getCatalog, neighbors, type ChapterEntry, type WorkEntry } from '../../../features/content/queries';
+
+interface Props {
+  workEntry: WorkEntry;
+  chapters: ChapterEntry[];
+  chapter: ChapterEntry;
+}
+
+export async function getStaticPaths() {
+  const catalog = await getCatalog();
+  return catalog.flatMap(({ work, chapters }) =>
+    chapters.map((chapter) => ({
+      params: { work: work.data.work, slug: chapter.data.slug },
+      props: { workEntry: work, chapters, chapter },
+    })),
+  );
+}
+
+const { workEntry, chapters, chapter } = Astro.props;
+const { prev, next } = neighbors(chapters, chapter.data.slug);
+const { Content } = await render(chapter);
+
+// Fecha ISO → «3 de septiembre de 2026» (medianoche local para no correr un día).
+const fmtDate = (iso: string) =>
+  new Date(`${iso}T00:00:00`).toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
+
+// Sinopsis del capítulo o, en su defecto, primera frase del cuerpo recortada a ~150 caracteres.
+const firstSentence = (body: string) => {
+  const text = body
+    .replace(/^#.*$/gm, '')
+    .replace(/[*_>`]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+  const sentence = text.match(/^[^.!?…]*[.!?…]/)?.[0] ?? text;
+  return sentence.length > 150 ? `${sentence.slice(0, 147).trimEnd()}…` : sentence;
+};
+
+const title = `${chapter.data.title} — ${workEntry.data.title}`;
+const description = chapter.data.synopsis ?? firstSentence(chapter.body ?? '');
+---
+
+<BaseLayout title={title} description={description}>
+  <article>
+    <header>
+      <h1>{chapter.data.title}</h1>
+      {
+        chapter.data.order !== undefined && <p class="meta">Capítulo {chapter.data.order}</p>
+      }
+      <p class="meta">{fmtDate(chapter.data.date_published)}</p>
+      {
+        chapter.data.updated && <p class="meta">Actualizado el {fmtDate(chapter.data.updated)}</p>
+      }
+    </header>
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+  <NavChapters work={workEntry.data.work} workTitle={workEntry.data.title} prev={prev} next={next} />
+</BaseLayout>
+
+<style>
+  h1 {
+    font-size: var(--text-xl);
+    font-weight: 600;
+    line-height: 1.25;
+    margin-block-end: var(--space-2);
+    text-wrap: balance;
+  }
+
+  .meta {
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+  }
+
+  header {
+    margin-block-end: var(--space-6);
+  }
+
+  .prose {
+    margin-block-end: var(--space-6);
+  }
+
+  /* Prosa de lectura: el Markdown renderizado no recibe el scope, se tipifica con :global. */
+  .prose :global(p) {
+    margin-block-end: var(--space-2);
+  }
+
+  .prose :global(h2) {
+    font-size: var(--text-lg);
+    font-weight: 600;
+    margin-block: var(--space-5) var(--space-2);
+  }
+
+  .prose :global(h3),
+  .prose :global(h4) {
+    font-size: var(--text-base);
+    font-weight: 600;
+    margin-block: var(--space-4) var(--space-1);
+  }
+
+  .prose :global(blockquote) {
+    border-inline-start: 2px solid var(--color-border);
+    margin-block: var(--space-3);
+    padding-inline-start: var(--space-3);
+  }
+
+  .prose :global(blockquote p) {
+    margin-block-end: 0;
+  }
+
+  .prose :global(ul),
+  .prose :global(ol) {
+    margin-block: var(--space-2);
+    padding-inline-start: var(--space-3);
+  }
+
+  .prose :global(li) {
+    margin-block-end: var(--space-1);
+  }
+
+  .prose :global(hr) {
+    border: 0;
+    border-top: 1px solid var(--color-border);
+    margin-block: var(--space-5);
+  }
+</style>

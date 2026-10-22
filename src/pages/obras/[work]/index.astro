@@ -1,0 +1,77 @@
+---
+// Página de obra: metadatos editoriales y acceso a los capítulos (SPEC-008).
+import BaseLayout from '../../../features/reading/layouts/BaseLayout.astro';
+import ChapterList from '../../../features/serials/ChapterList.astro';
+import { chapterUrl, getCatalog, type CatalogEntry } from '../../../features/content/queries';
+
+export async function getStaticPaths() {
+  const catalog = await getCatalog();
+  return catalog.map((entry) => ({ params: { work: entry.work.data.work }, props: { entry } }));
+}
+
+interface Props {
+  entry: CatalogEntry;
+}
+
+const { entry } = Astro.props;
+const { work, chapters } = entry;
+const tipo = work.data.type === 'serial' ? 'Por entregas' : 'Relato';
+// shortcut: un relato enlaza solo a su primer capítulo; si pudiera tener varias piezas, revisar aquí.
+const relato = work.data.type === 'relato' ? chapters[0] : undefined;
+---
+<BaseLayout title={work.data.title} description={work.data.synopsis}>
+  <article>
+    <h1>{work.data.title}</h1>
+    <p class="meta">Por {work.data.author} — {tipo}</p>
+    <p class="sinopsis">{work.data.synopsis}</p>
+    {work.data.tags && work.data.tags.length > 0 && (
+      <p class="tags">Etiquetas: {work.data.tags.join(', ')}</p>
+    )}
+    {chapters.length === 0 && <p class="vacio">Aún no hay capítulos publicados de esta obra.</p>}
+    {relato && (
+      <p class="leer">
+        Leer <a href={chapterUrl(work.data.work, relato.data.slug)}>«{relato.data.title}»</a>
+      </p>
+    )}
+    {work.data.type === 'serial' && chapters.length > 0 && (
+      <>
+        <h2>Capítulos</h2>
+        <ChapterList work={work.data.work} chapters={chapters} />
+      </>
+    )}
+  </article>
+</BaseLayout>
+
+<style>
+  h1 {
+    font-size: var(--text-xl);
+    font-weight: 600;
+  }
+  .meta {
+    margin-block-start: var(--space-1);
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+  }
+  .sinopsis {
+    margin-block-start: var(--space-3);
+    font-size: var(--text-lg);
+    font-weight: 500;
+  }
+  .tags {
+    margin-block-start: var(--space-2);
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+  }
+  .vacio,
+  .leer {
+    margin-block-start: var(--space-4);
+  }
+  .vacio {
+    color: var(--color-text-muted);
+  }
+  h2 {
+    margin-block-start: var(--space-5);
+    font-size: var(--text-lg);
+    font-weight: 500;
+  }
+</style>
