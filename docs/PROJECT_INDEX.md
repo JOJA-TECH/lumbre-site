@@ -18,8 +18,9 @@ Sitio editorial **estático** para leer relatos y novelas serializadas exportada
 
 | Ruta | Rol | Estado |
 |---|---|---|
-| `src/features/content/` | Único feature: colecciones (`collections.ts`) y schemas Zod derivados del contrato (`schemas.ts`) | Verificado (SPEC-005) |
+| `src/features/content/` | Colecciones, schemas Zod del contrato, consultas compartidas (`queries.ts`) y reescritura de enlaces Markdown (`md-links.mjs`) | Verificado (SPEC-005/008) |
 | `src/features/reading/` | Layout global accesible (`BaseLayout`) y verificador de contraste (`a11y-tokens.ts`) | Verificado (SPEC-007) |
+| `src/features/{catalog,serials,navigation,editorial}/` + `src/pages/` | Catálogo (home), página de obra con índice de serial, capítulo con prev/next, `/sobre/` — URLs `ADR-003` | Verificado (SPEC-008) |
 | `src/styles/` | Tokens de diseño «Papel frío, tinta y brasa» (WCAG AA, Literata autoalojada) y CSS base del shell | Verificado (SPEC-007) |
 | `src/features/validation/` | Validador CLI de reglas `PUB-3` (`pnpm validate` / `pnpm test:contract`, 17/17 fixtures); reutiliza los schemas Zod | Verificado (SPEC-006) |
 | `src/content.config.ts` | Punto de entrada de Content Collections; solo reexporta | Verificado |
@@ -44,7 +45,7 @@ Atelier (escritura, estados borrador/buffer/aprobado — ADR-INT-002)
 
 ## 4. Estado y tareas pendientes (según ROADMAP §6 y registro de cambios)
 
-**Fase activa: F2 — C2a ejecutado.** Shell editorial listo: tokens WCAG AA verificados por script, layout global accesible con 0 JS, dirección de diseño documentada. Sigue C2b (páginas reales). F1 verificada localmente (SPEC-006, 17/17 fixtures); `LU-F1-S5/S6` esperan contenido real. Ejecución por ciclos: [`docs/EXECUTION-PLAN.md`](EXECUTION-PLAN.md).
+**Fase activa: F2 — C2a y C2b ejecutados.** Lectura completa verificada con contenido sintético temporal (recorrido inicio → obra → capítulo → siguiente, 0 enlaces rotos). Sigue C3 (RSS/SEO). F1 verificada localmente (SPEC-006, 17/17 fixtures); `LU-F1-S5/S6` y evidencia definitiva de `LU-F2-S1` esperan el primer contenido real (`INT-3`). Ejecución por ciclos: [`docs/EXECUTION-PLAN.md`](EXECUTION-PLAN.md).
 
 | # | Tarea | Fase / criterio |
 |---|---|---|

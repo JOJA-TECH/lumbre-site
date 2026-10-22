@@ -63,9 +63,9 @@ Existe shell (tokens, layout) pero 0 páginas de lectura: un lector no puede lle
 
 | Criterio | Prueba / verificación | PR / commit |
 |---|---|---|
-| CA-1 | Pendiente | Pendiente |
-| CA-2 | Pendiente | Pendiente |
-| CA-3 | Pendiente | Pendiente |
-| CA-4 | Pendiente | Pendiente |
-| CA-5 | Pendiente | Pendiente |
-| CA-6 | Pendiente | Pendiente |
+| CA-1 | Build con contenido sintético temporal (1 relato + 1 serial de 3 capítulos, nunca commiteado): 8 páginas; `pnpm validate` 0 errores; recorrido inicio → obra → capítulo → siguiente verificado en `dist/` (Siguiente/Anterior correctos, relato sin nav); contenido eliminado tras la prueba | e8bb6c4 |
+| CA-2 | URLs generadas exactamente `/obras/{work}/` y `/obras/{work}/{slug}/`; enlaces internos de cuerpos reescritos a esas URLs por `rehypeMdLinks` | 7aaaf86 |
+| CA-3 | Serial ordenado 1→2→3 pese a archivos en orden inverso; relato sin navegación prev/next | e8bb6c4 |
+| CA-4 | Build sin `content/`: genera `/` y `/sobre/` con estados vacíos legibles (2 páginas, 0 errores) | e8c59d1 |
+| CA-5 | Cada página con `title`/`description` y un único `h1` (verificado en `dist/`); contraste AA heredado (`test:a11y` 9/9) | e8c59d1 |
+| CA-6 | `grep` en `dist/`: 0 `<script>`, 0 recursos externos; sin página de privacidad pública | b13f1b4 |
