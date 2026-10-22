@@ -1,8 +1,36 @@
 ---
 import BaseLayout from '../features/reading/layouts/BaseLayout.astro';
+import { getCatalog, workUrl } from '../features/content/queries';
+import '../features/catalog/catalog.css';
+
+const catalog = await getCatalog();
+// El relato es una pieza única: el tipo lo dice; solo el serial añade su cuenta.
+const tipoMeta = (type: 'relato' | 'serial', capitulos: number): string =>
+  type === 'serial' ? `Serial, ${capitulos} ${capitulos === 1 ? 'capítulo' : 'capítulos'}` : 'Relato';
 ---
-<BaseLayout title="Inicio" description="Relatos y novelas por entregas, para leer con calma y sin distracciones.">
-  <!-- marcador: reemplazar en C2b -->
-  <h1>Lumbre</h1>
-  <p>Lumbre publica relatos y novelas por entregas, en una lectura tranquila, sin anuncios ni distracciones.</p>
+<BaseLayout title="Lumbre" description="Relatos y novelas por entregas en español, para leer con calma y sin distracciones.">
+  <h1 class="portada-marca">Lumbre</h1>
+  <p class="portada-intro">Relatos y novelas por entregas en español, para leer con calma y sin distracciones.</p>
+  {catalog.length === 0 ? (
+    <div class="vacio">
+      <p>Aún no hay obras publicadas.</p>
+      <p class="vacio-nota">Aquí aparecerán los relatos y novelas por entregas.</p>
+    </div>
+  ) : (
+    <ul class="obras">
+      {catalog.map(({ work, chapters }) => (
+        <li class="obra">
+          <h2 class="obra-titulo"><a href={workUrl(work.data.work)}>{work.data.title}</a></h2>
+          <p class="obra-meta">
+            <span>{work.data.author}</span>
+            <span>{tipoMeta(work.data.type, chapters.length)}</span>
+          </p>
+          <p class="obra-sinopsis">{work.data.synopsis}</p>
+          {work.data.tags && work.data.tags.length > 0 && (
+            <p class="obra-tags">{work.data.tags.join(', ')}</p>
+          )}
+        </li>
+      ))}
+    </ul>
+  )}
 </BaseLayout>

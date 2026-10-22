@@ -1,0 +1,61 @@
+/* Portada = catálogo (SPEC-008, ciclo C2b). Jerarquía tipográfica: la estructura
+   la dan tamaño, peso y blanco; sin tarjetas, sombras ni filetes decorativos. */
+
+.portada-marca {
+  font-size: var(--text-2xl);
+  font-weight: 650;
+  line-height: 1.2;
+}
+
+/* Entradilla de portada: única prosa en tinta; el resto del catálogo es ceniza */
+.portada-intro {
+  margin-top: var(--space-3);
+  font-size: var(--text-lg);
+  font-weight: 500;
+}
+
+.obras {
+  margin-top: var(--space-6);
+  padding: 0;
+  list-style: none;
+}
+
+.obra + .obra {
+  margin-top: var(--space-6);
+}
+
+.obra-titulo {
+  font-size: var(--text-xl);
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+/* Autoría y tipo sin puntos medios: ítems separados por blanco (design-direction.md) */
+.obra-meta {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: var(--space-3);
+  margin-top: var(--space-1);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.obra-sinopsis {
+  margin-top: var(--space-2);
+  color: var(--color-text-muted);
+}
+
+.obra-tags {
+  margin-top: var(--space-1);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.vacio {
+  margin-top: var(--space-6);
+}
+
+.vacio-nota {
+  margin-top: var(--space-1);
+  color: var(--color-text-muted);
+}
