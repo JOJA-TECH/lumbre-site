@@ -11,6 +11,7 @@ Fuente de criterios: [`ROADMAP.md`](../ROADMAP.md). Los criterios solo se marcan
 | SPEC-005 | Base estática y colecciones de contenido | Verificada | `LU-F0-S4`, `LU-F2-S4`, `ARQ-1`, `ARQ-2`, `ARQ-4` | `ADR-001`, `ADR-002`, `ADR-004`, `ADR-INT-001` | — |
 | SPEC-006 | Validador de publicación segura y CI | Aprobada | `LU-F1-S1…S4`, `INT-2` (parcial) | `ADR-002`, `ADR-INT-001`, `ADR-INT-002`, `ADR-INT-003` | — |
 | SPEC-007 | Shell editorial: tokens de diseño y layout accesible | Aprobada | `LU-F2-S2`, `LU-F2-S4`, `LU-F2-S5` (parcial), `A11Y-1` | `ADR-001`, `ADR-003` | — |
+| SPEC-008 | Páginas de lectura: catálogo, obra, capítulo y navegación | Aprobada | `LU-F2-S1`, `LU-F2-S3`, `LU-F2-S4`, `SEO-1`, `CON-5` | `ADR-001`, `ADR-003` | — |
 | ADR-INT-001 | Contrato de contenido v1 (obra y capítulo) | Aceptado | `LU-F0-S2`, `LU-F0-S5`, `AT-F0-S1`, `AT-F0-S2`, `INT-1` | — | — |
 | ADR-INT-002 | Estados editoriales vs. estados de despliegue; promoción manual | Aceptado | `LU-F0-S1`, `LU-F1-S1`, `INT-2`, `INT-3` | `ADR-INT-001` | — |
 | ADR-INT-003 | Cobertura de fixtures de publicación para `PUB-3` | Aceptado | `LU-F0-S2`, `LU-F0-S5`, `LU-F1-S1…S4` | `ADR-INT-001` | — |
