@@ -1,0 +1,32 @@
+# CI de validación y build. Sin despliegue: producción solo con promoción manual (ADR-INT-002, ADR-002).
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  # Un solo run por PR: cada push nuevo cancela el run obsoleto del mismo PR.
+  group: ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      # Lee la versión del campo `packageManager` de package.json.
+      - uses: pnpm/action-setup@v6
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm test:contract
+      - run: pnpm validate
+      - run: pnpm check
+      - run: pnpm build
