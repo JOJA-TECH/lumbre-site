@@ -54,11 +54,11 @@ Ante cualquier fixture inválida o contenido que viole `PUB-3`, la salida del va
 
 | Criterio | Prueba / verificación | PR / commit |
 |---|---|---|
-| CA-1 | `pnpm test:contract` + `pnpm validate` sobre la matriz de fixtures | Pendiente de commit |
-| CA-2 | Run de CI en el PR que introduce este cambio | Pendiente de commit |
-| CA-3 | `pnpm validate` con `content/` vacío → exit 0 | Pendiente de commit |
-| CA-4 | Revisión del código del validador | Pendiente de commit |
-| CA-5 | Revisión del código: sin llamadas de red ni despliegue | Pendiente de commit |
+| CA-1 | `pnpm test:contract`: 17/17 casos correctos (2 valid + 6 invalid + 9 lumbre-only); `pnpm validate` exit 0 | 22f635f |
+| CA-2 | Workflow definido en `.github/workflows/ci.yml` (test:contract → validate → check → build); primer run real al abrir el PR | b839d16 |
+| CA-3 | `pnpm validate` con `content/` vacío → «0 publications», exit 0 | 22f635f |
+| CA-4 | Revisión de código: importa `workSchema`/`chapterSchema` de `src/features/content/schemas.ts`, sin redefinir campos | 22f635f |
+| CA-5 | Revisión de código: solo `node:fs`/`node:path`, sin red, sin despliegue, no imprime fragmentos detectados | 22f635f |
 
 ## Pendientes y limitaciones registradas
 

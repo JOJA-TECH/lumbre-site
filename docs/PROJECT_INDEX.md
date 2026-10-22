@@ -19,6 +19,7 @@ Sitio editorial **estático** para leer relatos y novelas serializadas exportada
 | Ruta | Rol | Estado |
 |---|---|---|
 | `src/features/content/` | Único feature: colecciones (`collections.ts`) y schemas Zod derivados del contrato (`schemas.ts`) | Verificado (SPEC-005) |
+| `src/features/validation/` | Validador CLI de reglas `PUB-3` (`pnpm validate` / `pnpm test:contract`, 17/17 fixtures); reutiliza los schemas Zod | Verificado (SPEC-006) |
 | `src/content.config.ts` | Punto de entrada de Content Collections; solo reexporta | Verificado |
 | `contract/v1/` | Fuente del contrato: `obra`, `capitulo`, `publicacion` (JSON Schema) + fixtures `valid/`, `invalid/`, `lumbre-only/` y `SHA256SUMS` | Aceptado; copia Atelier pendiente de sincronizar |
 | `content/` | Contenido aprobado (Markdown + frontmatter). **Aún no existe** | Vacío por diseño |
@@ -41,15 +42,15 @@ Atelier (escritura, estados borrador/buffer/aprobado — ADR-INT-002)
 
 ## 4. Estado y tareas pendientes (según ROADMAP §6 y registro de cambios)
 
-**Fase activa: F0, parcialmente completada.** Un solo frente activo; después F1 → F2. Ejecución por ciclos: [`docs/EXECUTION-PLAN.md`](EXECUTION-PLAN.md).
+**Fase activa: F0 en cierre + C1 (F1) ejecutado localmente.** Políticas aprobadas en texto (aviso IA: opción B); `SPEC-006` verificada (validador 17/17 fixtures + CI definido). Pendiente: mirror Atelier (`INT-1`), identidad del responsable, y `LU-F1-S5/S6` con primer contenido real. Ejecución por ciclos: [`docs/EXECUTION-PLAN.md`](EXECUTION-PLAN.md).
 
 | # | Tarea | Fase / criterio |
 |---|---|---|
 | 1 | Sincronizar fixtures `lumbre-only` con Atelier y acordar cobertura de su autotest — manifiesto local verificado en C0 (21/21 hashes ok) | F0 · `LU-F0-S5` / `INT-1` (parcial) |
-| 2 | Cerrar políticas `editorial.md` y `privacidad.md` — propuestas listas (avisos IA, categorías, historial, reclamos); faltan aprobación del propietario y datos del responsable | F0 · entregables |
+| 2 | ~~Cerrar políticas~~ — texto aprobado 2026-10-21; falta identidad/contacto del responsable para publicar | F0 · entregables |
 | 3 | ~~Resolver contradicción en `docs/INDEX.md`~~ — resuelto en C0 | F0 · trazabilidad |
 | 4 | ~~Documentar nombre provisional y dominio candidato~~ — creado `docs/name-and-domain.md`; verificación real diferida a `LU-G-L` | F0 · entregable |
-| 5 | Validador de contenido (CLI) + CI que ejecute validación + build; reglas `PUB-3` hacen fallar el build | F1 · `LU-F1-S1…S6`, `INT-2` |
+| 5 | ~~Validador + CI (F1)~~ — `SPEC-006` verificada: validador 17/17 fixtures, CI definido; `LU-F1-S1…S4` verificados localmente | F1 · `LU-F1-S1…S4` |
 | 6 | Shell editorial y lectura (layouts, catálogo, capítulo, navegación) en `src/features/{reading,catalog,serials,editorial,navigation,privacy}/` | F2 · `LU-F2-S1…S5` |
 | 7 | RSS, sitemap, SEO técnico, 404, redirecciones | F3 · `LU-F3-S1…S5`, `INT-4` |
 | 8 | Puertas `LU-G-L` antes de lanzar: dominio (`H-LU-03`), cuenta/límites Cloudflare (`H-LU-02`), publicación real `INT-3` | Lanzamiento |
